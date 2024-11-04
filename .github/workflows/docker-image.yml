@@ -29,7 +29,7 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: juliandev16/notas-poli:latest
+          tags: juliandev16/notas-poli:${{ github.sha }}
 
       - name: Image tag with timestamp
         run: |
