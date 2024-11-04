@@ -22,19 +22,3 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-
-      - name: Build and push
-        uses: docker/bake-action@v5
-        with:
-          context: .
-          file: Dockerfile
-          push: true
-          tags: juliandev16/notas-poli:${{ github.sha }}
-
-      - name: Image tag with timestamp
-        run: |
-          TIMESTAMP_TAG="my-dockerhub-username/my-image-name:$(date +%s)"
-          echo "TIMESTAMP_TAG=$TIMESTAMP_TAG" >> $GITHUB_ENV
-
-      - name: Push image with timestamp tag
-        run: docker tag my-dockerhub-username/my-image-name:latest $TIMESTAMP_TAG
