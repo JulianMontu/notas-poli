@@ -1,11 +1,18 @@
 version: '3'
+
 services:
- app:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: nest-docker-api
+    container_name: nest-docker-api3
     ports:
       - '3000:3000'
     volumes:
       - ./src:/app/src
+    networks:
+      - mi_red_compartida
+
+networks:
+  mi_red_compartida:
+    external: true

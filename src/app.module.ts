@@ -5,7 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
-    MongooseModule.forRoot("mongodb://localhost:27017/todo-list"),
+    MongooseModule.forRoot("mongodb://notas-poli-bd:27017/todos"),
     TodoListModule
   ],
   controllers: [],
