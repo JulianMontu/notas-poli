@@ -26,7 +26,10 @@ jobs:
       - name: Build and push
         uses: docker/bake-action@v5
         with:
+          context: .
+          file: Dockerfile
           push: true
+          tags: juliandev16/notas-poli:tagname
 
       - name: Image tag with timestamp
         run: |
