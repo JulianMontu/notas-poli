@@ -24,6 +24,12 @@
 
 ## Description
 
+para correr nuestro backend en la misma red usamos:
+
+```
+docker-compose up --build
+```
+
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation
@@ -71,3 +77,4 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
