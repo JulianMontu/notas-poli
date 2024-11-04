@@ -21,15 +21,12 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
+      - name: Build and push
+        uses: docker/bake-action@v5
         with:
-          context: .
-          file: Dockerfile
           push: true
-          tags: my-dockerhub-username/my-image-name:latest
 
       - name: Image tag with timestamp
         run: |
