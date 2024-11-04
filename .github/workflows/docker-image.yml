@@ -38,4 +38,3 @@ jobs:
 
       - name: Push image with timestamp tag
         run: docker tag my-dockerhub-username/my-image-name:latest $TIMESTAMP_TAG
-        run: docker push $TIMESTAMP_TAG
