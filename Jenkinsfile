@@ -7,6 +7,11 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/JulianMontu/notas-poli.git'
             }
         }
+        stage('install') {
+            steps {
+                bat 'npm install -f'
+            }
+        }
         stage('build') {
             steps {
                 bat 'npm run build'
