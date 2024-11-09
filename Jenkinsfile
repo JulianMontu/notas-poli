@@ -1,48 +1,40 @@
 pipeline {
     agent any
     
-    environment {
-        DOCKER_PATH= '/Applications/Docker.app/Contents/Resources/bin/docker'
-        DOCKER_COMPOSE= '/Applications/Docker.app/Contents/Resources/bin/docker-compose'
-    }
-
     stages {
         stage('checkout') {
-            steps{
-                git branch:'master', url:'https://github.com/JulianMontu/notas-poli.git'
+            steps {
+                git branch: 'master', url: 'https://github.com/JulianMontu/notas-poli.git'
             }
         }
-        stage('build'){
-            steps{
-                //en este step configuro el buil d mi project
+        stage('build') {
+            steps {
                 echo 'npm run build'
             }
         }
-        stage('Code Analisis'){
-            steps{
-                //en este step configuro el buil d mi project
-                echo 'Run analisis'
+        stage('Code Analysis') {
+            steps {
+                echo 'Run analysis'
             }
         }
-        stage('Test'){
-            steps{
-                //en este step configuro el buil d mi project
+        stage('Test') {
+            steps {
                 echo 'npm run test'
             }
         }
         stage('Build Docker Image') {
             steps {
-                sh '${DOCKER_PATH} build -t docker-project:latest .'
+                bat 'docker build -t docker-project:latest .'
             }
         }
-        stage('Build with Docker Compose'){
+        stage('Build with Docker Compose') {
             steps {
-                sh '${DOCKER_COMPOSE} build'
+                bat 'docker-compose build'
             }
         }
-        stage('Run docker images'){
+        stage('Run Docker Containers') {
             steps {
-                sh '${DOCKER_COMPOSE} up -d'
+                bat 'docker-compose up -d'
             }
         }
     }
