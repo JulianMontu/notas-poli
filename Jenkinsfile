@@ -9,7 +9,7 @@ pipeline {
         }
         stage('build') {
             steps {
-                echo 'npm run build'
+                bat 'npm run build'
             }
         }
         stage('Code Analysis') {
@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'npm run test'
+                bat 'npm run test'
             }
         }
         stage('Build Docker Image') {
