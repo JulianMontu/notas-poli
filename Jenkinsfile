@@ -1,10 +1,10 @@
 pipeline {
-    agent any
-    
+    //agent any
+    agent { label 'windows' }  // Especifica un nodo Windows
     stages {
         stage('checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/JulianMontu/notas-poli.git'
+                git branch: 'master', url: 'https://github.com/JulianMontu/notas-poli.git', credentialsId: 'GloriaGit-Credentials'
             }
         }
         stage('install') {
