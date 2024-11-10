@@ -1,6 +1,5 @@
 pipeline {
-    //agent any
-    agent { label 'windows' }  // Especifica un nodo Windows
+    agent any    
     stages {
         stage('checkout') {
             steps {
