@@ -19,6 +19,7 @@ export class TodoListService {
     }
   
     async findOne(id: string): Promise<Todo> {
+      if(id === null) return;
       return this.todoModel.findById(id).exec();
     }
   
