@@ -70,7 +70,7 @@ describe('TodoListService', () => {
       expect(mockTodoModel.findById).toHaveBeenCalledWith('1');
     });
 
-    it('should return undefined if id is null', async () => {
+    it('should return undefined if id is null or empty', async () => {
       const result = await service.findOne(null);
       expect(result).toBeUndefined();
     });
