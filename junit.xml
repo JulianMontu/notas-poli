@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="12" failures="0" errors="0" time="6.263">
+  <testsuite name="TodoListService" errors="0" failures="0" skipped="0" timestamp="2024-11-25T04:44:35" time="5.522" tests="6">
+    <testcase classname="TodoListService should be defined" name="TodoListService should be defined" time="0.019">
+    </testcase>
+    <testcase classname="TodoListService findAll should return an array of todos" name="TodoListService findAll should return an array of todos" time="0.004">
+    </testcase>
+    <testcase classname="TodoListService findOne should return a todo by id" name="TodoListService findOne should return a todo by id" time="0.002">
+    </testcase>
+    <testcase classname="TodoListService findOne should return undefined if id is null" name="TodoListService findOne should return undefined if id is null" time="0.002">
+    </testcase>
+    <testcase classname="TodoListService update should update a todo by id" name="TodoListService update should update a todo by id" time="0.003">
+    </testcase>
+    <testcase classname="TodoListService remove should delete a todo by id" name="TodoListService remove should delete a todo by id" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="TodoListController" errors="0" failures="0" skipped="0" timestamp="2024-11-25T04:44:35" time="5.588" tests="6">
+    <testcase classname="TodoListController should be defined" name="TodoListController should be defined" time="0.019">
+    </testcase>
+    <testcase classname="TodoListController create should create a new todo" name="TodoListController create should create a new todo" time="0.004">
+    </testcase>
+    <testcase classname="TodoListController findAll should return an array of todos" name="TodoListController findAll should return an array of todos" time="0.003">
+    </testcase>
+    <testcase classname="TodoListController findOne should return a single todo" name="TodoListController findOne should return a single todo" time="0.002">
+    </testcase>
+    <testcase classname="TodoListController update should update an existing todo" name="TodoListController update should update an existing todo" time="0.004">
+    </testcase>
+    <testcase classname="TodoListController remove should remove a todo" name="TodoListController remove should remove a todo" time="0.002">
+    </testcase>
+  </testsuite>
+</testsuites>
