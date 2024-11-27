@@ -1,0 +1,7 @@
+coverage:
+  precision: 2
+  round: down
+  range: "50...100" # Rango de porcentaje esperado de cobertura
+comment:
+  layout: "diff, files"
+  behavior: default
