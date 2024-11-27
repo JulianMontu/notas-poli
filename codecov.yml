@@ -1,6 +1,6 @@
 coverage:
   status:
-    project:
+    project: true
       default:   # Nombre del check (se muestra en los PRs)
         target: auto           # Calcula automáticamente el objetivo de cobertura
         threshold: 5           # Permite una reducción de hasta el 5% en cobertura
