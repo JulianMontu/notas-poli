@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: -Test results and Docker Image CI
 
 on:
   push:
@@ -11,33 +11,46 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Verifica el repositorio
       - name: Check out the repository
         uses: actions/checkout@v4
 
+      # 2. Configura Node.js
       - name: Set up Node
         uses: actions/setup-node@v4
+        with:
+          node-version: 18 # Asegúrate de usar la versión adecuada
 
+      # 3. Instala las dependencias
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests
+      # 4. Ejecuta las pruebas con cobertura
+      - name: Run tests with coverage
         run: npx jest --coverage
 
-      - name: Upload results to Codecov
+      # 5. Sube los resultados de cobertura a Codecov
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/*.json # Ruta a los reportes de cobertura generados por Jest
+          token: ${{ secrets.CODECOV_TOKEN }} # Elimina esta línea para repos públicos
+          fail_ci_if_error: true # Falla el flujo si Codecov encuentra un problema
+
+      # 6. Sube los resultados de pruebas (opcional)
       - name: Upload test results to Codecov
         if: ${{ !cancelled() }}
         uses: codecov/test-results-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
+      # 7. Inicia sesión en Docker Hub
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      # 8. Configura Docker Buildx
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3

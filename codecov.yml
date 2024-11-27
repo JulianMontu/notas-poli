@@ -1,7 +1,10 @@
 coverage:
-  precision: 2
-  round: down
-  range: "50...100" # Rango de porcentaje esperado de cobertura
-comment:
-  layout: "diff, files"
-  behavior: default
+  status:
+    project:
+      patch:
+        threshold: 20%   # Reducción máxima permitida en cambios incrementales
+      overall:
+        target: 60%      # Requiere al menos 60% de cobertura global
+  comment:
+    layout: "diff, files" # Estilo del comentario en los PR
+    behavior: default     # Comportamiento predeterminado
