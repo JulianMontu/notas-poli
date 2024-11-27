@@ -37,7 +37,7 @@ jobs:
 
       # 6. Sube los resultados de cobertura como artefacto
       - name: Upload coverage artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: artifacts/coverage-report.zip
@@ -46,7 +46,7 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
-          files: ./coverage/*.json # Ruta a los reportes de cobertura generados por Jest
+          files: ./coverage/lcov-report/* # Ruta a los reportes de cobertura generados por Jest
           token: ${{ secrets.CODECOV_TOKEN }} # Elimina esta línea para repos públicos
           fail_ci_if_error: true # Falla el flujo si Codecov encuentra un problema
 
