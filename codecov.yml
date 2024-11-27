@@ -1,6 +1,6 @@
 coverage:
   status:
-    project: true
+    project:
       default:   # Nombre del check (se muestra en los PRs)
         target: auto           # Calcula automáticamente el objetivo de cobertura
         threshold: 5           # Permite una reducción de hasta el 5% en cobertura
@@ -15,10 +15,10 @@ coverage:
         if_ci_failed: error    # Marca como error si el flujo CI falla
         informational: false   # Si `true`, no fallará aunque no cumpla el objetivo
         only_pulls: false      # Si `true`, solo aplica la regla en PRs
-    patch:
-      threshold: 20%   # Reducción máxima permitida en cambios incrementales
-    overall:
-      target: 60%      # Requiere al menos 60% de cobertura global
+      patch:
+        threshold: 20%         # Reducción máxima permitida en cambios incrementales
+      overall:
+        target: 60%            # Requiere al menos 60% de cobertura global
   comment:
-    layout: "diff, files" # Estilo del comentario en los PR
-    behavior: default     # Comportamiento predeterminado
+    layout: "diff, files"      # Estilo del comentario en los PR
+    behavior: default          # Comportamiento predeterminado
