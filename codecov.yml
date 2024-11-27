@@ -1,10 +1,24 @@
 coverage:
   status:
     project:
-      patch:
-        threshold: 20%   # Reducción máxima permitida en cambios incrementales
-      overall:
-        target: 60%      # Requiere al menos 60% de cobertura global
+      default:   # Nombre del check (se muestra en los PRs)
+        target: auto           # Calcula automáticamente el objetivo de cobertura
+        threshold: 5           # Permite una reducción de hasta el 5% en cobertura
+        base: auto             # Usa la base automática (rama o commit principal)
+        flags: 
+          - unit               # Categoría del reporte (ej., pruebas unitarias)
+        paths: 
+          - "src"              # Limita la evaluación de cobertura a la carpeta "src"
+        # Configuraciones avanzadas
+        branches: 
+          - master             # Aplica la regla solo a la rama "master"
+        if_ci_failed: error    # Marca como error si el flujo CI falla
+        informational: false   # Si `true`, no fallará aunque no cumpla el objetivo
+        only_pulls: false      # Si `true`, solo aplica la regla en PRs
+    patch:
+      threshold: 20%   # Reducción máxima permitida en cambios incrementales
+    overall:
+      target: 60%      # Requiere al menos 60% de cobertura global
   comment:
     layout: "diff, files" # Estilo del comentario en los PR
     behavior: default     # Comportamiento predeterminado
