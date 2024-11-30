@@ -18,7 +18,7 @@ coverage:
       patch:
         threshold: 20%         # Reducción máxima permitida en cambios incrementales
       overall:
-        target: 60%            # Requiere al menos 60% de cobertura global
+        target: 70%            # Requiere al menos 60% de cobertura global
   comment:
     layout: "diff, files"      # Estilo del comentario en los PR
     behavior: default          # Comportamiento predeterminado
