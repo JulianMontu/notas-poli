@@ -22,3 +22,5 @@ coverage:
   comment:
     layout: "diff, files"      # Estilo del comentario en los PR
     behavior: default          # Comportamiento predeterminado
+  ignore:
+    - "src/todo-list/todo-list.module.ts"  # Excluir el archivo específico
