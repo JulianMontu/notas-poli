@@ -4,9 +4,6 @@ import { nodeProfilingIntegration } from "@sentry/profiling-node";
 
 Sentry.init({
   dsn: "https://c754a9e6beb0ec218cd494f3e7cd683a@o4508384897794048.ingest.us.sentry.io/4508384899104768",
-  integrations: [
-    nodeProfilingIntegration(),
-  ],
   // Tracing
   tracesSampleRate: 1.0, //  Capture 100% of the transactions
 });

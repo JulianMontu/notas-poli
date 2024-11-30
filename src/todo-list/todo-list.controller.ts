@@ -3,6 +3,7 @@ import { TodoListService } from "./todo-list.service";
 import { CreateTodoDto } from "./dto/create-todo.dto";
 import { Todo } from "./entities/todo.entity";
 import { UpdateTodoDto } from "./dto/update-todo.dto";
+import * as Sentry from '@sentry/nestjs';
 
 @Controller()
 export class TodoListController {
@@ -10,7 +11,12 @@ export class TodoListController {
 
   @Get("/debug-sentry")
   getError() {
-    throw new Error("My first Sentry error!");
+    try{
+      throw new Error("My first Sentry error!");
+    }catch(e){
+      Sentry.captureException(e);
+    
+    }
   }
 
   @Post('/create')
