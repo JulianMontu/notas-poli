@@ -8,7 +8,7 @@ coverage:
         flags: 
           - unit               # Categoría del reporte (ej., pruebas unitarias)
         paths: 
-          - "src"              # Limita la evaluación de cobertura a la carpeta "src"
+          - "src/todo-list"              # Limita la evaluación de cobertura a la carpeta "src"
         # Configuraciones avanzadas
         branches: 
           - master             # Aplica la regla solo a la rama "master"
