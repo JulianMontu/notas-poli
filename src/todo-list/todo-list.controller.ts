@@ -6,7 +6,12 @@ import { UpdateTodoDto } from "./dto/update-todo.dto";
 
 @Controller()
 export class TodoListController {
-  constructor(private readonly todoListService: TodoListService) {}
+  constructor(private readonly todoListService: TodoListService) { }
+
+  @Get("/debug-sentry")
+  getError() {
+    throw new Error("My first Sentry error!");
+  }
 
   @Post('/create')
   async create(@Body() createTodoDto: CreateTodoDto): Promise<Todo> {

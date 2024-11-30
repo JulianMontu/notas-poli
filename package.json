@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "nest build",
+    "build": "nest build && npm run sentry:sourcemaps",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -17,7 +17,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org montufaringenieros --project node-nestjs ./out && sentry-cli sourcemaps upload --org montufaringenieros --project node-nestjs ./out"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -26,6 +27,9 @@
     "@nestjs/mongoose": "^10.1.0",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^8.0.1",
+    "@sentry/cli": "^2.39.1",
+    "@sentry/nestjs": "^8.41.0",
+    "@sentry/profiling-node": "^8.41.0",
     "dotenv": "^16.4.5",
     "mongoose": "^8.8.0",
     "reflect-metadata": "^0.2.0",
@@ -57,7 +61,12 @@
   },
   "jest": {
     "collectCoverage": true,
-  "coverageReporters": ["json", "lcov", "text", "clover"],
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "clover"
+    ],
     "moduleFileExtensions": [
       "js",
       "json",
