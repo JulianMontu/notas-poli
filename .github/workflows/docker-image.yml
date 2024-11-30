@@ -24,9 +24,9 @@ jobs:
       # 3. Instala las dependencias
       - name: Install dependencies
         run: npm install
-        
+
       - name: Build dependencies
-        run: npm build
+        run: npm run build
 
       # 4. Ejecuta las pruebas con cobertura
       - name: Run tests with coverage
