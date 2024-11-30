@@ -21,9 +21,15 @@ export class TodoListController {
 
   @Post('/create')
   async create(@Body() createTodoDto: CreateTodoDto): Promise<Todo> {
+    debugger
+    console.log('createTodoDto 1', createTodoDto);
     try{
+      if(createTodoDto.title === ''){
+        throw new Error('Error en el titulo');
+      }
     return this.todoListService.create(createTodoDto);
     }catch(e){
+      console.log('error', e);
       Sentry.captureException(e);
     }
   }
