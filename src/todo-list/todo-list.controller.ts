@@ -21,7 +21,11 @@ export class TodoListController {
 
   @Post('/create')
   async create(@Body() createTodoDto: CreateTodoDto): Promise<Todo> {
+    try{
     return this.todoListService.create(createTodoDto);
+    }catch(e){
+      Sentry.captureException(e);
+    }
   }
 
   @Get('/listar')
