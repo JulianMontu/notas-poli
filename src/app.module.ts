@@ -6,7 +6,7 @@ import { SentryModule } from '@sentry/nestjs/setup';
 
 @Module({
   imports: [
-    MongooseModule.forRoot("mongodb+srv://pos_test:DoUkMVzOYjEiUWky@pos.osekwof.mongodb.net/pos?retryWrites=true&w=majority&appName=todos"),
+    MongooseModule.forRoot("mongodb://notas-poli-bd:27017/todos"),
     SentryModule.forRoot(),
     TodoListModule
   ],
