@@ -4,9 +4,6 @@
 [![Docker Image CI](https://github.com/JulianMontu/notas-poli/actions/workflows/docker-image.yml/badge.svg)](https://github.com/JulianMontu/notas-poli/actions/workflows/docker-image.yml)
 
 <hr>
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" />asas</a>
-</p>
 
 ## Description
 
