@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, Param, Post, Put } from "@nestjs/common";
 import { TodoListService } from "./todo-list.service";
 import { CreateTodoDto } from "./dto/create-todo.dto";
 import { Todo } from "./entities/todo.entity";
@@ -25,7 +25,10 @@ export class TodoListController {
     console.log('createTodoDto 1', createTodoDto);
     try{
       if(createTodoDto.title === ''){
-        throw new Error('Error en el titulo');
+        throw new HttpException(
+          'El título no puede estar vacío.',
+          HttpStatus.BAD_REQUEST,
+        );
       }
     return this.todoListService.create(createTodoDto);
     }catch(e){
