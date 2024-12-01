@@ -34,6 +34,16 @@ export class TodoListController {
     }catch(e){
       console.log('error', e);
       Sentry.captureException(e);
+
+      if (e instanceof HttpException) {
+        throw e;
+      }
+
+      // Si no es un HttpException, responde con un error interno del servidor
+      throw new HttpException(
+        'Ocurrió un error inesperado en el servidor.',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
   }
 
