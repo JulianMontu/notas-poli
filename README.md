@@ -1,9 +1,16 @@
-<hr>
-<h2>Ejecucion de pipeline de github actions</h2>
+## Integrantes del grupo
+
+- Natalia Katherine Hernandez Guaqueta
+- Julian Andres Montufar Burbano
+- Maddy Mesa
+- Paola Andrea Moreno Piñeros
+- Sara Sofia Mendez Prada
+- Gloria Maria Velasquez Molina
+
+## Ejecucion de pipeline de github actions
 
 [![Docker Image CI](https://github.com/JulianMontu/notas-poli/actions/workflows/docker-image.yml/badge.svg)](https://github.com/JulianMontu/notas-poli/actions/workflows/docker-image.yml)
 
-<hr>
 
 ## Description
 
@@ -77,12 +84,3 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
-## Integrantes del grupo
-
-- Natalia Katherine Hernandez Guaqueta
-- Julian Andres Montufar Burbano
-- Maddy Mesa
-- Paola Andrea Moreno Piñeros
-- Sara Sofia Mendez Prada
-- Gloria Maria Velasquez Molina
