@@ -1,4 +1,4 @@
-name: Test results and Docker Image CI
+name: CI Pipeline
 
 on:
   push:
@@ -7,72 +7,83 @@ on:
     branches: [ "master" ]
 
 jobs:
+  # Stage 1: Build
   build:
     runs-on: ubuntu-latest
-
     steps:
-      # 1. Verifica el repositorio
       - name: Check out the repository
         uses: actions/checkout@v4
 
-      # 2. Configura Node.js
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18 # Asegúrate de usar la versión adecuada
-      - name: Set SENTRY_AUTH_TOKEN
-        run: echo "SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}" >> $GITHUB_ENV
-        
+          node-version: 18
 
-      # 3. Instala las dependencias
       - name: Install dependencies
         run: npm install
 
-      - name: Build dependencies
+      - name: Build project
         run: npm run build
 
-      # 4. Ejecuta las pruebas con cobertura
+  # Stage 2: Tests and Coverage
+  tests:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Run tests with coverage
         run: npx jest --coverage
 
-      # 5. Genera un archivo comprimido con los resultados de cobertura
       - name: Package coverage report
         run: |
           mkdir -p artifacts
           zip -r artifacts/coverage-report.zip coverage/
 
-      # 6. Sube los resultados de cobertura como artefacto
       - name: Upload coverage artifact
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: artifacts/coverage-report.zip
 
-      # 7. Sube los resultados de cobertura a Codecov
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
-          files: ./coverage/lcov-report/* # Ruta a los reportes de cobertura generados por Jest
-          token: ${{ secrets.CODECOV_TOKEN }} # Elimina esta línea para repos públicos
-          fail_ci_if_error: true # Falla el flujo si Codecov encuentra un problema
+          files: ./coverage/lcov-report/*
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true
 
-      # 8. Sube los resultados de pruebas a Codecov
       - name: Upload test results to Codecov
-        if: ${{ !cancelled() }}
         uses: codecov/test-results-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
-      # 9. Inicia sesión en Docker Hub
+  # Stage 3: Docker
+  docker:
+    runs-on: ubuntu-latest
+    needs: [build, tests]
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # 10. Configura Docker Buildx
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
